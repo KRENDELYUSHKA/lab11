@@ -1,121 +1,121 @@
 <?php
-if (isset($_POST["go"])) {
-    abstract class Animal
+
+abstract class Animal
+{
+    public $food;
+    public $location;
+
+    function __construct($food, $location)
     {
-        public $food;
-        public $location;
-
-        function __construct($food, $location)
-        {
-            $this->food = $food;
-            $this->location = $location;
-        }
-
-        abstract function makeNoise();
-        abstract function eat();
-        abstract function sleep();
-    }
-    class cat extends Animal
-    {
-        public $color;
-
-        function __construct($food, $location, $color)
-        {
-            $this->food = $food;
-            $this->location = $location;
-            $this->color = $color;
-        }
-        function makeNoise()
-        {
-            echo "<br>" . "meow";
-        }
-        function eat()
-        {
-            echo "<br>" . "cat eating";
-        }
-        function sleep()
-        {
-            echo "<br>" . "cat sleep";
-        }
-    }
-    class dog extends Animal
-    {
-        public $size;
-
-        function __construct($food, $location, $size)
-        {
-            $this->food = $food;
-            $this->location = $location;
-            $this->size = $size;
-        }
-        function makeNoise()
-        {
-            echo "<br>" . "bark";
-        }
-        function eat()
-        {
-            echo "<br>" . "dog eating";
-        }
-        function sleep()
-        {
-            echo "<br>" . "dog sleep";
-        }
-    }
-    class hourse extends Animal
-    {
-        public $breed;
-
-        function __construct($food, $location, $breed)
-        {
-            $this->food = $food;
-            $this->location = $location;
-            $this->breed = $breed;
-        }
-        function makeNoise()
-        {
-            echo "<br>" . "i-go-go";
-        }
-        function eat()
-        {
-            echo "<br>" . "hourse eating";
-        }
-        function sleep()
-        {
-            echo "<br>" . "hourse sleep";
-        }
-    }
-    $class = $_POST["class"];
-    $food = $_POST["food"];
-    $location = $_POST["location"];
-    $third = $_POST["third"];
-    if ($class = 'cat') {
-        $object = new cat($food, $location, $third);
-        echo "<br>" . $object->food;
-        echo "<br>" . $object->location;
-        echo "<br>" . $object->color;
-    }
-    if ($class = 'dog') {
-        $object = new dog($food, $location, $third);
-        echo "<br>" . $object->food;
-        echo "<br>" . $object->location;
-        echo "<br>" . $object->size;
-    }
-    if ($class = 'hourse') {
-        $object = new hourse($food, $location, $third);
-        echo "<br>" . $object->food;
-        echo "<br>" . $object->location;
-        echo "<br>" . $object->breed;
-    }
-    if ($class != 'dog' || $class != 'hourse' || $class != 'cat') {
-        $object = new cat($food, $location, $third);
+        $this->food = $food;
+        $this->location = $location;
     }
 
-
-
-    $object->makeNoise();
-    $object->eat();
-    $object->sleep();
+    abstract function make_noise();
+    abstract function eat();
+    abstract function sleep();
 }
+class Cat extends Animal
+{
+    public $color;
+
+    function __construct($food, $location, $color)
+    {
+        $this->food = $food;
+        $this->location = $location;
+        $this->color = $color;
+    }
+    function make_noise()
+    {
+        echo "<br>" . "meow";
+    }
+    function eat()
+    {
+        echo "<br>" . "the cat eats";
+    }
+    function sleep()
+    {
+        echo "<br>" . "the cat is sleeping";
+    }
+}
+class Dog extends Animal
+{
+    public $razmer;
+
+    function __construct($food, $location, $breed)
+    {
+        $this->food = $food;
+        $this->location = $location;
+        $this->breed = $breed;
+    }
+    function make_noise()
+    {
+        echo "<br>" . "woof";
+    }
+    function eat()
+    {
+        echo "<br>" . "the dog eats";
+    }
+    function sleep()
+    {
+        echo "<br>" . "the dog is sleeping";
+    }
+}
+class Horse extends Animal
+{
+    public $poroda;
+
+    function __construct($food, $location, $view)
+    {
+        $this->food = $food;
+        $this->location = $location;
+        $this->view = $view;
+    }
+    function make_noise()
+    {
+        echo "<br>" . "neigh";
+    }
+    function eat()
+    {
+        echo "<br>" . "the horse eats";
+    }
+    function sleep()
+    {
+        echo "<br>" . "the horse is sleeping";
+    }
+}
+$class = $_POST["class"];
+$food = $_POST["food"];
+$location = $_POST["location"];
+$sign = $_POST["sign"];
+if ($class == 'Cat') {
+    $object = new Cat($food, $location, $sign);
+    echo "<br>" . $object->food;
+    echo "<br>" . $object->location;
+    echo "<br>" . $object->color;
+}
+if ($class == 'Dog') {
+    $object = new Dog($food, $location, $sign);
+    echo "<br>" . $object->food;
+    echo "<br>" . $object->location;
+    echo "<br>" . $object->breed;
+}
+if ($class == 'Horse') {
+    $object = new Horse($food, $location, $sign);
+    echo "<br>" . $object->food;
+    echo "<br>" . $object->location;
+    echo "<br>" . $object->view;
+}
+if ($class != 'Cat' && $class != 'Dog' && $class != 'Horse') {
+    $object = new Cat($food, $location, $sign);
+}
+
+
+
+$object->make_noise();
+$object->eat();
+$object->sleep();
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -125,15 +125,16 @@ if (isset($_POST["go"])) {
 </head>
 
 <body>
+
     <form method="post">
         <input type="text" name="class">
         <input type="text" name="food">
         <input type="text" name="location">
-        <input type="text" name="third">
-        <input type="submit" name="go">
+        <input type="text" name="sign">
+
+        <button>Посчитать</button>
+    </form>
     </form>
 </body>
-
-</html>
 
 </html>
